@@ -25,12 +25,14 @@ form3_client_1  | ============================== 6 passed in 2.53s =============
 
 ## Example Usage
 
-### List Accounts
+### Get all Accounts
 
 ```python
 import form3
 manager = form3.Manager()
 accounts = manager.get_all_accounts()
+for account in accounts:
+    print(account)
 ```
 
 ### Get Account by ID
@@ -39,6 +41,7 @@ accounts = manager.get_all_accounts()
 import form3
 manager = form3.Manager()
 account = manager.get_account(account_id="11962ab6-ed03-4216-a88e-e94ffad552d2")
+print(account)
 ```
 
 ### Create Account
@@ -65,3 +68,11 @@ manager = form3.Manager()
 account = manager.get_account(account_id="11962ab6-ed03-4216-a88e-e94ffad552d2")
 account.delete()
 ```
+
+## Technical Decisions
+
+The [BaseAPI class](https://github.com/serain/form3-client/blob/master/form3/baseapi.py#L24) base class abstracts the HTTP layer by providing HTTP method helper functions and handling pagination. It is intended to be subclassed for each resource provided by the API (such as accounts).
+
+[Accounts](https://github.com/serain/form3-client/blob/master/form3/account.py) subclasses BaseAPI and represents an Account resource. It provides methods for fetching, creating and deleting account resources.
+
+The [Manager](https://github.com/serain/form3-client/blob/master/form3/manager.py#L6) class provides methods for fetching single accounts or listing of all accounts.
