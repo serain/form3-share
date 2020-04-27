@@ -73,6 +73,8 @@ account.delete()
 
 The [BaseAPI class](https://github.com/serain/form3-client/blob/master/form3/baseapi.py#L24) base class abstracts the HTTP layer by providing HTTP method helper functions and handling pagination. It is intended to be subclassed for each resource provided by the API (such as accounts).
 
-[Accounts](https://github.com/serain/form3-client/blob/master/form3/account.py) subclasses BaseAPI and represents an Account resource. It provides methods for fetching, creating and deleting account resources.
+[Account](https://github.com/serain/form3-client/blob/master/form3/account.py) subclasses BaseAPI and represents an Account resource. It provides methods for fetching, creating and deleting account resources.
 
 The [Manager](https://github.com/serain/form3-client/blob/master/form3/manager.py#L6) class provides methods for fetching single accounts or listing of all accounts.
+
+The API endpoint can be configured via the `API_ENDPOINT` environment variable.
