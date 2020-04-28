@@ -1,3 +1,3 @@
 from .manager import Manager
 from .account import Account
-from .baseapi import NotFoundError, APIError, JSONError
+from .httpclient import NotFoundError, APIError, JSONError
