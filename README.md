@@ -1,5 +1,12 @@
 # form3-client
 
+Candidate: Alexandre Kaskasoli
+Role: Senior Cloud Security Engineer
+
+*IMPORTANT NOTE*
+
+The instructions clearly state the exercise should be done in Golang. On my initial phone interview it was mentioned that while Golang was the ideal, there could be some flexibility to submit this in another language. I'm excited at the idea of picking up Golang but have had to deal with a hefty load of work this past week which has limited my time for job application tasks. This task has therefor been submitted in Python3. If there is any issue with this, I'm happy to resubmit in Golang for next week.
+
 ## Description
 
 This is a client library for Form3's fake account [API service](https://github.com/form3tech-oss/interview-accountapi).
