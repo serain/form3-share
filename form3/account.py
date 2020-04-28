@@ -1,22 +1,37 @@
 from __future__ import annotations
-from .baseapi import BaseAPI
+from typing import Optional
+
+from .httpclient import HTTPClient
 
 
-class Account(BaseAPI):
-    def __init__(self, *args, **kwargs):
+class Account:
+    def __init__(
+        self,
+        id: str = None,
+        organisation_id: Optional[str] = None,
+        version: int = 0,
+        bank_id: Optional[str] = None,
+        bank_id_code: Optional[str] = None,
+        base_currency: Optional[str] = None,
+        bic: Optional[str] = None,
+        country: Optional[str] = None,
+        **kwargs,
+    ):
         # Only supporting a subset of all attributes listed, see docs for more
         # https://api-docs.form3.tech/api.html?shell#organisation-accounts-create
-        self.id = None
-        self.organisation_id = None
-        self.version = 0
-        self.bank_id = None
-        self.bank_id_code = None
-        self.base_currency = None
-        self.bic = None
-        self.country = None
+        self.id = id
+        self.organisation_id = organisation_id
+        self.version = version
+        self.bank_id = bank_id
+        self.bank_id_code = bank_id_code
+        self.base_currency = base_currency
+        self.bic = bic
+        self.country = country
+        self._client = HTTPClient()
 
-        # The base class will load the values passed
-        super().__init__(*args, **kwargs)
+        # Support additional account properties
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     @classmethod
     def get_object(cls, account_id: str) -> Account:
@@ -28,7 +43,7 @@ class Account(BaseAPI):
         """
             Fetch data about the account and populate object attributes.
         """
-        data = self._get(f"organisation/accounts/{self.id}")
+        data = self._client.get(f"organisation/accounts/{self.id}")
 
         self.id = data["id"]
         self.organisation_id = data["organisation_id"]
@@ -58,7 +73,7 @@ class Account(BaseAPI):
             }
         }
 
-        self._post("organisation/accounts", data=payload)
+        self._client.post("organisation/accounts", data=payload)
 
     def delete(self) -> bool:
         """
@@ -66,6 +81,6 @@ class Account(BaseAPI):
 
             Returns True if 204.
         """
-        return self._delete(
+        return self._client.delete(
             f"organisation/accounts/{self.id}", params={"version": int(self.version)}
         )
