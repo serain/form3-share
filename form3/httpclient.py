@@ -21,16 +21,12 @@ class APIError(Error):
     pass
 
 
-class BaseAPI:
-    def __init__(self, *args, **kwargs):
+class HTTPClient:
+    def __init__(self):
         self._session = requests.Session()
-        self.endpoint = os.getenv("API_ENDPOINT", "http://localhost:8080/v1/")
+        self.base_uri = os.getenv("API_ENDPOINT", "http://localhost:8080/v1/")
         self.timeout = 5
         self.headers = {"Content-type": "application/json"}
-
-        # set attributes from kwargs
-        for key, value in kwargs.items():
-            setattr(self, key, value)
 
     def _make_request(
         self, url: str, action: str = "GET", payload: dict = None
@@ -41,7 +37,7 @@ class BaseAPI:
             Returns True for a 204 response, and the JSON body response for
             other successful codes.
         """
-        url = urllib.parse.urljoin(self.endpoint, url)
+        url = urllib.parse.urljoin(self.base_uri, url)
 
         if action == "GET":
             res = self._session.get(
