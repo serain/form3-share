@@ -11,7 +11,32 @@ The instructions clearly state the exercise should be done in Golang. On my init
 
 This is a client library for Form3's fake account [API service](https://github.com/form3tech-oss/interview-accountapi).
 
+## Installation
+
+### Local machine
+
+Requires Python 3.7+ and `pipenv`. To get these on a Ubuntu/Debian machine:
+
+```
+$ apt install python3.7 python3-pip
+$ pip install --user pipenv
+```
+
+You can then create the virtual environment for the `form3` library:
+
+```
+$ pipenv install --dev
+```
+
+### Docker-compose
+
+```
+$ docker-compose build
+```
+
 ## Run Tests
+
+The test suite is composed of mainly integration tests that rely on access to the fake Account API service and network access to the Postgres testing DB. This is conviently wrapped into a `docker-compose.yml` and the test suite can be run with a simple `docker-compose up` for convenience:
 
 ```
 $ docker-compose up
