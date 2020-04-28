@@ -22,8 +22,6 @@ class APIError(Error):
 
 
 class BaseAPI:
-    # TODO get defaults from environment
-
     def __init__(self, *args, **kwargs):
         self._session = requests.Session()
         self.endpoint = os.getenv("API_ENDPOINT", "http://localhost:8080/v1/")
