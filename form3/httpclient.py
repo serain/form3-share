@@ -74,7 +74,7 @@ class HTTPClient:
 
         return jsoned
 
-    def _get(self, url: str, params: str = None) -> dict:
+    def get(self, url: str, params: str = None) -> dict:
         """
             Makes a GET request, automagically handles pagination.
 
@@ -97,8 +97,8 @@ class HTTPClient:
 
         return data
 
-    def _post(self, url: str, data: str = None) -> Union[dict, bool]:
+    def post(self, url: str, data: str = None) -> Union[dict, bool]:
         return self._make_request(url, action="POST", payload=data)
 
-    def _delete(self, url: str, params: str = None) -> Union[dict, bool]:
+    def delete(self, url: str, params: str = None) -> Union[dict, bool]:
         return self._make_request(url, action="DELETE", payload=params)
