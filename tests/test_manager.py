@@ -3,19 +3,11 @@ import pytest
 import uuid
 
 import form3
-from .basetest import BaseTest
 from .test_account import create_account
 
 
-class TestAccount(BaseTest):
-    def setup_method(self):
-        """
-            Clear the test db before any tests.
-        """
-        cur = self.conn.cursor()
-        cur.execute('DELETE FROM "Account"')
-        self.conn.commit()
-
+@pytest.mark.usefixtures("isolated_database_connection")
+class TestAccount:
     def test_get_account(self):
         _id = "ff27e2aa-9605-4b4b-a0e5-3003ea9ccaaa"
         bank_id = "123456"

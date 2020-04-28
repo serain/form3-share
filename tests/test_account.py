@@ -2,7 +2,6 @@ import os
 import pytest
 
 import form3
-from .basetest import BaseTest
 
 
 def create_account(**kwargs):
@@ -25,15 +24,8 @@ def create_account(**kwargs):
     return account
 
 
-class TestAccount(BaseTest):
-    def setup_method(self):
-        """
-            Clear the test db before any tests.
-        """
-        cur = self.conn.cursor()
-        cur.execute('DELETE FROM "Account"')
-        self.conn.commit()
-
+@pytest.mark.usefixtures("isolated_database_connection")
+class TestAccount:
     def test_create_account(self):
         """
             Ensure we can create an account without raising any errors.
