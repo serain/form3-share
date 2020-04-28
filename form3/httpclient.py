@@ -74,13 +74,13 @@ class HTTPClient:
 
         return jsoned
 
-    def get(self, url: str, params: str = None) -> dict:
+    def get(self, endpoint: str, params: str = None) -> dict:
         """
             Makes a GET request, automagically handles pagination.
 
             Returns the JSON response.
         """
-        jsoned = self._make_request(url, action="GET", payload=params)
+        jsoned = self._make_request(endpoint, action="GET", payload=params)
         data = jsoned["data"]
 
         # handle pagination
@@ -92,13 +92,13 @@ class HTTPClient:
             for key, value in parsed_next_query.items():
                 params[key] = value
 
-            jsoned = self._make_request(url, action="GET", payload=params)
+            jsoned = self._make_request(endpoint, action="GET", payload=params)
             data += jsoned["data"]
 
         return data
 
-    def post(self, url: str, data: str = None) -> Union[dict, bool]:
-        return self._make_request(url, action="POST", payload=data)
+    def post(self, endpoint: str, data: str = None) -> Union[dict, bool]:
+        return self._make_request(endpoint, action="POST", payload=data)
 
-    def delete(self, url: str, params: str = None) -> Union[dict, bool]:
-        return self._make_request(url, action="DELETE", payload=params)
+    def delete(self, endpoint: str, params: str = None) -> Union[dict, bool]:
+        return self._make_request(endpoint, action="DELETE", payload=params)
