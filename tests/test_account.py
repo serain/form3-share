@@ -5,7 +5,7 @@ import form3
 from .basetest import BaseTest
 
 
-def create_account(*args, **kwargs):
+def create_account(**kwargs):
     """
         Helper to create an account with custom or default attributes.
     """
