@@ -78,10 +78,12 @@ account.delete()
 
 ## Technical Decisions
 
-The [BaseAPI class](https://github.com/serain/form3-client/blob/master/form3/baseapi.py#L24) base class abstracts the HTTP layer by providing HTTP method helper functions and handling pagination. It is intended to be subclassed for each resource provided by the API (such as accounts).
+The [HTTPClient class](https://github.com/serain/form3-test/blob/master/form3/httpclient.py#L24) abstracts the HTTP layer by providing HTTP method helper functions and transparently handling pagination.
 
-[Account](https://github.com/serain/form3-client/blob/master/form3/account.py) subclasses BaseAPI and represents an Account resource. It provides methods for fetching, creating and deleting account resources.
+[Account](https://github.com/serain/form3-client/blob/master/form3/account.py) represents an Account resource and leverages HTTPClient for API calls. It provides methods for fetching, creating and deleting account resources.
 
 The [Manager](https://github.com/serain/form3-client/blob/master/form3/manager.py#L6) class provides methods for fetching single accounts or listing of all accounts.
 
-The API endpoint can be configured via the `API_ENDPOINT` environment variable.
+The API endpoint can be configured via the `API_ENDPOINT` environment variable, allowing it to be easily configured for different environments.
+
+The integration tests rely on access to the fake Account API service as well as access to the testing PostgresDB. The `Accounts` table in the database is wiped before each test, ensuring stable and reliable tests.
