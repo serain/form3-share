@@ -10,17 +10,17 @@ This is a client library for Form3's fake account [API service](https://github.c
 $ docker-compose up
 ...
 form3_client_1  | ----------- coverage: platform linux, python 3.7.7-final-0 -----------
-form3_client_1  | Name                Stmts   Miss  Cover
-form3_client_1  | ---------------------------------------
-form3_client_1  | form3/__init__.py       3      0   100%
-form3_client_1  | form3/account.py       30      0   100%
-form3_client_1  | form3/baseapi.py       58      6    90%
-form3_client_1  | form3/manager.py       15      0   100%
-form3_client_1  | ---------------------------------------
-form3_client_1  | TOTAL                 106      6    94%
+form3_client_1  | Name                  Stmts   Miss  Cover
+form3_client_1  | -----------------------------------------
+form3_client_1  | form3/__init__.py         3      0   100%
+form3_client_1  | form3/account.py         33      0   100%
+form3_client_1  | form3/httpclient.py      56      6    89%
+form3_client_1  | form3/manager.py         16      0   100%
+form3_client_1  | -----------------------------------------
+form3_client_1  | TOTAL                   108      6    94%
 form3_client_1  | 
 form3_client_1  | 
-form3_client_1  | ============================== 6 passed in 2.53s ===============================
+form3_client_1  | ============================== 6 passed in 1.97s ===============================
 ```
 
 ## Example Usage
