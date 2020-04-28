@@ -1,8 +1,8 @@
 # form3-client
 
-Candidate: Alexandre Kaskasoli
+**Candidate:** Alexandre Kaskasoli
 
-Role: Senior Cloud Security Engineer
+**Role:** Senior Cloud Security Engineer
 
 *IMPORTANT NOTE*
 
