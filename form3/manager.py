@@ -1,17 +1,18 @@
 from typing import List
-from .baseapi import BaseAPI
+from .httpclient import HTTPClient
 from .account import Account
 
 
-class Manager(BaseAPI):
+class Manager:
     def __init__(self):
         super().__init__()
+        self._client = HTTPClient()
 
     def get_all_accounts(self) -> List[Account]:
         """
             Returns a list of all Account objects.
         """
-        data = self._get("organisation/accounts", params={"page[size]": 100})
+        data = self._client.get("organisation/accounts", params={"page[size]": 100})
 
         accounts = []
         for jsoned in data:
